@@ -1,14 +1,19 @@
 angular.module('slackApp')
-    .controller('MessagesCtrl', function($scope){
+    .controller('MessagesCtrl', function($scope, $stateParams){
         var messagesCtrl = this;
         // $scope.messages = messages;
-        // $scope.channelName = channelName;
+        var channel = JSON.parse(localStorage.getItem('channel') ||'{}');
+        var user = JSON.parse(localStorage.getItem('user'));
+        $scope.channelName = channel.channelName;
+        $scope.channelId = channel.channelId;
         $scope.message = '';
+        // console.log($stateParams.id);
         $scope.initChannelMessages = function(){
         var channelMessages = new CB.CloudQuery('ChannelMessages');
+        channelMessages.equalTo('channelId',$scope.channelId);
         channelMessages.find({
-            success: function(channelMessages){
-                $scope.messages = channelMessages;
+            success: function(messages){
+                $scope.messages = messages;
                 console.log($scope.messages);
             },
             error: function(err){
@@ -19,26 +24,20 @@ angular.module('slackApp')
           $scope.initChannelMessages();
 
         $scope.sendMessage = function(){
-            if($scope.message.length > 0){
+            if($scope.body.length > 0){
                 var channelMessage = new CB.CloudObject('ChannelMessages');
-                channelMessage.set('userId','pclZ3jYg');
+                channelMessage.set('username',user.username);
                 channelMessage.set('body',$scope.body);
-                channelMessage.set('channelId','Rr56CQk0');
+                channelMessage.set('channelId',channel.channelId);
                 channelMessage.save({
                     success: function(channelMessage){
-
+                        $scope.messages='';
                     },
                     error: function(err){
                         console.log(err);
                     }
                 });
-                // messagesCtrl.messages.$add({
-                //     uid: profile.$id,
-                //     body: messagesCtrl.message,
-                //     timestamp: Firebase.ServerValue.TIMESTAMP
-                // }).then(function(){
-                //     messagesCtrl.message = '';
-                // });
+
             }
         };
     });

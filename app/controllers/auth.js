@@ -23,7 +23,7 @@ angular.module('slackApp')
           user.set('password', $scope.password);
           user.logIn({
             success: function(user){
-              localStorage.setItem('username', user.document.username);
+              localStorage.setItem('user', JSON.stringify({username:user.document.username, userId:user.document._id}));
               $state.go('channels');
           },
           error: function(err){

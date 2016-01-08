@@ -1,7 +1,10 @@
 angular.module('slackApp')
     .controller('ChannelsCtrl', function($scope, $state){
         $scope.profile= {};
-        $scope.profile.displayName = localStorage.getItem('username');
+        var user = JSON.parse(localStorage.getItem('user'));
+        $scope.profile.displayName = user.username;
+
+        console.log(user.userId);
     $scope.channelsInit = function(){
         var query = new CB.CloudQuery('Channel');
         query.find({
@@ -19,6 +22,10 @@ angular.module('slackApp')
     $scope.logout = function(){
 
     }
+    $scope.setChannel= function(channelName, channelId){
+        // console.log(channelName);
+        localStorage.setItem('channel',JSON.stringify({channelName:channelName, channelId:channelId}));
+    };
     $scope.createChannel = function(){
         var channel = new CB.CloudObject('Channel');
         channel.set('name',$scope.name);

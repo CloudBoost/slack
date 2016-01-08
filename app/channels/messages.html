@@ -1,12 +1,11 @@
 <div class="header">
-  <h1>{{ channelName }}</h1>
+  <h1>#{{ channelName }}</h1>
 </div>
 
 <div class="message-wrap" ng-repeat="message in messages">
-  <!--<img class="user-pic" ng-src="{{ channelsCtrl.getGravatar(message.uid) }}" />-->
   <div class="message-info">
     <div class="user-name">
-      test
+      {{message.document.username}}
       <span class="timestamp">{{ message.document.createdAt | date:'short' }}</span>
     </div>
     <div class="message">
@@ -14,7 +13,6 @@
     </div>
   </div>
 </div>
-
 <form class="message-form" ng-submit="sendMessage()">
 
   <div class="input-group">
