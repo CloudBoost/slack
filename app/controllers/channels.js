@@ -10,7 +10,6 @@ angular.module('slackApp')
         query.find({
             success:function(channels){
                 $scope.channels=channels;
-                console.log(channels);
             },
             error: function(err){
                 console.log(err);
@@ -23,7 +22,7 @@ angular.module('slackApp')
 
     }
     $scope.setChannel= function(channelName, channelId){
-        // console.log(channelName);
+
         localStorage.setItem('channel',JSON.stringify({channelName:channelName, channelId:channelId}));
     };
     $scope.createChannel = function(){
@@ -31,7 +30,7 @@ angular.module('slackApp')
         channel.set('name',$scope.name);
         channel.save({
             success: function(channel){
-                // $scope.channelsInit();
+
                 console.log(channel);
                 $state.go('channels.messages', {channelId: channel.document._id});
 
