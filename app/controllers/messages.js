@@ -28,6 +28,7 @@ angular.module('slackApp')
                 channelMessage.set('channelId',channel.channelId);
                 channelMessage.save({
                     success: function(channelMessage){
+                        $scope.initChannelMessages();
                         $scope.messages='';
                     },
                     error: function(err){

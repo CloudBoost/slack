@@ -29,6 +29,7 @@ angular.module('slackApp')
                 directMessage.save({
                     success: function(directMessage){
                         console.log(directMessage);
+                        $scope.initDirectMessages();
                         $scope.body='';
                     },
                     error: function(err){
