@@ -5,8 +5,5 @@ version 0.11.1.
 
 ## Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
+Run `npm install` in the root folder to install node dependencies and then  `cd app` and run bower install to install bower components then run `node server` for running the app.
 
-## Testing
-
-Running `grunt test` will run the unit tests with karma.
