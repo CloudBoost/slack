@@ -4,7 +4,7 @@ var bodyParser =    require('body-parser');
 var fs =            require('fs');
 var app =           express();
 var http = require('http').Server(app);
-var port ='5000';
+var port = process.env.PORT || '5000';
 if (!process.env.PORT) {
     global.isDevelopment = true;
 } else {
