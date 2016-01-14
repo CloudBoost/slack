@@ -1,8 +1,9 @@
 angular.module('slackApp')
     .controller('ChannelsCtrl', function($scope, $state){
         $scope.profile= {};
-        var user = JSON.parse(localStorage.getItem('user'));
+        var user = JSON.parse(localStorage.getItem('user')||'{}');
         $scope.profile.displayName = user.username;
+        $scope.profile.id = user.userId;
 
         console.log(user.userId);
     $scope.channelsInit = function(){
@@ -16,14 +17,35 @@ angular.module('slackApp')
             }
         });
     }
+
+    $scope.getUsers = function(){
+        var query = new CB.CloudQuery('User');
+        query.find({
+            success: function(users){
+                $scope.users = users;
+                console.log(users);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
     $scope.channelsInit();
+    $scope.getUsers();
 
     $scope.logout = function(){
+        localStorage.setItem('channel','{}');
+        localStorage.setItem('direct','{}');
+        localStorage.setItem('user','{}');
 
     }
     $scope.setChannel= function(channelName, channelId){
 
         localStorage.setItem('channel',JSON.stringify({channelName:channelName, channelId:channelId}));
+    };
+    $scope.setDirectChannel= function(userName, userId){
+
+        localStorage.setItem('direct',JSON.stringify({username:userName, userId:userId}));
     };
     $scope.createChannel = function(){
         var channel = new CB.CloudObject('Channel');

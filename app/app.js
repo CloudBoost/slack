@@ -41,8 +41,8 @@ angular
       })
       .state('channels.direct',{
         url:'/{uid}/messages/direct',
-        templateUrl:'channels/messages.html',
-        controller:'MessagesCtrl',
+        templateUrl:'channels/directmessages.html',
+        controller:'DirectCtrl',
       })
       .state('register', {
         url: '/register',

@@ -1,0 +1,14 @@
+{
+  "name": "angular-ui-router",
+  "homepage": "https://github.com/angular-ui/ui-router",
+  "version": "0.2.15",
+  "_release": "0.2.15",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.2.15",
+    "commit": "805e69bae319e922e4d3265b7ef565058aaff850"
+  },
+  "_source": "git://github.com/angular-ui/ui-router.git",
+  "_target": "~0.2.14",
+  "_originalSource": "angular-ui-router"
+}

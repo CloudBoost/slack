@@ -14,11 +14,11 @@
         <a ui-sref="channels.create">+ create channel</a>
       </div>
       <div class="list-head">Direct Messages</div>
-      <!--<div class="channel" ng-repeat="user in users"><a ng-if="user.$id !== profile.$id" ui-sref="channels.direct({uid: user.$id})" ui-sref-active="selected"><span class="presence" ng-class="{online: user.online}"></span>
-       {{ user.displayName }}
+      <div class="channel" ng-repeat="user in users"><a ng-if="user.document._id !== profile.id" ui-sref="channels.direct({uid: user.document.username})" ui-sref-active="selected"ng-click="setDirectChannel(user.document.username, user.document._id)"><span class="presence" ng-class="{online: user.online}" ></span>
+       {{ user.document.username}}
      </a>
 
-      </div>-->
+      </div>
     </div>
 
     <div class="my-info" ng-model="profile">
